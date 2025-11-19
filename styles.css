@@ -46,7 +46,6 @@ body {
     padding: var(--spacing-sm) var(--spacing-lg);
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -346,15 +345,15 @@ input:checked + .slider:before {
 
 /* ===== TEMA CLARO ===== */
 body.light-theme {
-    --bg-primary: #f8fafc;
+    --bg-primary: #fafafa;
     --bg-secondary: #ffffff;
-    --bg-tertiary: #f1f5f9;
-    --text-primary: #1e293b;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
-    --accent-primary: #3b82f6;
-    --accent-hover: #2563eb;
-    --border-color: #e2e8f0;
+    --bg-tertiary: #f5f5f5;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-muted: #757575;
+    --accent-primary: #7e57c2;      /* Morado principal */
+    --accent-hover: #6d48ab;        /* Morado más oscuro */
+    --border-color: #e0e0e0;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
@@ -415,9 +414,18 @@ body.light-theme .btn-cancel:hover {
     color: var(--text-primary);
 }
 
-/* Asegurar que el switch se vea bien en tema claro */
+body.light-theme .btn-save {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+body.light-theme .btn-save:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Switch en tema claro */
 body.light-theme .slider {
-    background-color: #cbd5e1;
+    background-color: #e0e0e0;
 }
 
 body.light-theme input:checked + .slider {
@@ -426,6 +434,23 @@ body.light-theme input:checked + .slider {
 
 body.light-theme .slider:before {
     background-color: #ffffff;
+}
+
+/* Asegurar coherencia en textos */
+body.light-theme .app-name {
+    color: var(--text-primary);
+}
+
+body.light-theme .column-title {
+    color: var(--text-primary);
+}
+
+body.light-theme .card-title {
+    color: var(--text-primary);
+}
+
+body.light-theme .card-desc {
+    color: var(--text-secondary);
 }
 
 /* ===== RESPONSIVE ===== */
