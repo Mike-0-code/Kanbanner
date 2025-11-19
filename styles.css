@@ -23,7 +23,6 @@
     --border-radius-lg: 12px;
 }
 
-/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -58,7 +57,6 @@ body {
     letter-spacing: -0.5px;
 }
 
-/* Switch de tema */
 .theme-switch {
     display: flex;
     align-items: center;
@@ -126,7 +124,6 @@ input:checked + .slider:before {
     min-height: calc(100vh - 80px);
 }
 
-/* Columnas */
 .column {
     background-color: var(--bg-secondary);
     border-radius: var(--border-radius-lg);
@@ -155,15 +152,16 @@ input:checked + .slider:before {
     gap: var(--spacing-sm);
 }
 
-/* ===== TARJETAS ===== */
+/* ===== TARJETAS - MEJORADO ===== */
 .card {
     background-color: var(--bg-tertiary);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: var(--spacing-sm);
-    cursor: grab;
+    cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
+    user-select: none;
 }
 
 .card:hover {
@@ -179,6 +177,14 @@ input:checked + .slider:before {
 .card.dragging {
     opacity: 0.5;
     transform: rotate(5deg);
+}
+
+/* Quitar cursor pointer de elementos internos */
+.card-title,
+.card-desc,
+.card-date {
+    cursor: inherit;
+    pointer-events: none;
 }
 
 .card-title {
@@ -204,7 +210,6 @@ input:checked + .slider:before {
     text-align: right;
 }
 
-/* Botón agregar tarjeta */
 .add-card-btn {
     background-color: var(--bg-tertiary);
     border: 2px dashed var(--border-color);
@@ -223,7 +228,7 @@ input:checked + .slider:before {
     background-color: var(--bg-secondary);
 }
 
-/* ===== MODAL ===== */
+/* ===== MODALES ===== */
 .modal {
     display: none;
     position: fixed;
@@ -262,12 +267,6 @@ input:checked + .slider:before {
     color: var(--text-primary);
 }
 
-#modal-title {
-    margin-bottom: var(--spacing-md);
-    color: var(--text-primary);
-}
-
-/* Botón de eliminar en el modal */
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -279,6 +278,8 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    width: 100%;
+    justify-content: space-between;
 }
 
 .delete-card-btn {
@@ -290,6 +291,7 @@ input:checked + .slider:before {
     border-radius: var(--border-radius);
     font-size: 0.875rem;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .delete-card-btn:hover {
@@ -335,7 +337,8 @@ input:checked + .slider:before {
     justify-content: center;
 }
 
-.btn-cancel-confirm, .btn-delete-confirm {
+.btn-cancel-confirm, 
+.btn-delete-confirm {
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -365,16 +368,7 @@ input:checked + .slider:before {
     background-color: #b91c1c;
 }
 
-/* Ajustes para tema claro */
-body.light-theme .btn-delete-confirm {
-    background-color: #ef4444;
-}
-
-body.light-theme .btn-delete-confirm:hover {
-    background-color: #dc2626;
-}
-
-/* Formulario */
+/* ===== FORMULARIOS ===== */
 .form-group {
     margin-bottom: var(--spacing-md);
 }
@@ -392,7 +386,8 @@ body.light-theme .btn-delete-confirm:hover {
     float: right;
 }
 
-#card-title, #card-desc {
+#card-title, 
+#card-desc {
     width: 100%;
     padding: var(--spacing-sm);
     background-color: var(--bg-tertiary);
@@ -403,7 +398,8 @@ body.light-theme .btn-delete-confirm:hover {
     transition: border-color 0.2s ease;
 }
 
-#card-title:focus, #card-desc:focus {
+#card-title:focus, 
+#card-desc:focus {
     outline: none;
     border-color: var(--accent-primary);
 }
@@ -421,7 +417,8 @@ body.light-theme .btn-delete-confirm:hover {
     margin-top: var(--spacing-lg);
 }
 
-.btn-cancel, .btn-save {
+.btn-cancel, 
+.btn-save {
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -458,79 +455,62 @@ body.light-theme {
     --text-primary: #1a1a1a;
     --text-secondary: #4a4a4a;
     --text-muted: #757575;
-    --accent-primary: #7e57c2;      /* Morado principal */
-    --accent-hover: #6d48ab;        /* Morado más oscuro */
+    --accent-primary: #7e57c2;
+    --accent-hover: #6d48ab;
     --border-color: #e0e0e0;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Ajustes específicos para tema claro */
 body.light-theme .top-bar {
     background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
 }
 
 body.light-theme .column {
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 body.light-theme .card {
     background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .card:hover {
-    border-color: var(--accent-primary);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 body.light-theme .add-card-btn {
     background-color: var(--bg-tertiary);
-    border: 2px dashed var(--border-color);
-    color: var(--text-secondary);
 }
 
 body.light-theme .add-card-btn:hover {
     background-color: var(--bg-secondary);
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
 }
 
-body.light-theme .modal-content {
+body.light-theme .modal-content,
+body.light-theme .confirm-content {
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 body.light-theme #card-title,
 body.light-theme #card-desc {
     background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
 }
 
-body.light-theme .btn-cancel {
+body.light-theme .btn-cancel,
+body.light-theme .btn-cancel-confirm {
     background-color: var(--bg-tertiary);
-    color: var(--text-secondary);
 }
 
-body.light-theme .btn-cancel:hover {
+body.light-theme .btn-cancel:hover,
+body.light-theme .btn-cancel-confirm:hover {
     background-color: var(--border-color);
-    color: var(--text-primary);
 }
 
 body.light-theme .btn-save {
     background-color: var(--accent-primary);
-    color: white;
 }
 
 body.light-theme .btn-save:hover {
     background-color: var(--accent-hover);
 }
 
-/* Switch en tema claro */
 body.light-theme .slider {
     background-color: #e0e0e0;
 }
@@ -543,21 +523,12 @@ body.light-theme .slider:before {
     background-color: #ffffff;
 }
 
-/* Asegurar coherencia en textos */
-body.light-theme .app-name {
-    color: var(--text-primary);
+body.light-theme .btn-delete-confirm {
+    background-color: #ef4444;
 }
 
-body.light-theme .column-title {
-    color: var(--text-primary);
-}
-
-body.light-theme .card-title {
-    color: var(--text-primary);
-}
-
-body.light-theme .card-desc {
-    color: var(--text-secondary);
+body.light-theme .btn-delete-confirm:hover {
+    background-color: #dc2626;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -588,6 +559,24 @@ body.light-theme .card-desc {
     .modal-content {
         margin: 10% auto;
         width: 95%;
+        padding: var(--spacing-md);
+    }
+    
+    .confirm-content {
+        margin: 25% auto;
+        padding: var(--spacing-md);
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: flex-start;
+    }
+    
+    .modal-title-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
     }
 }
 
