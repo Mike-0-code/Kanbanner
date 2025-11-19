@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderAllColumns();
     setupEventListeners();
     setupDragAndDrop();
+    setupConfirmModal();
 });
 
 // ===== GESTIÓN DE DATOS =====
