@@ -90,7 +90,15 @@ function editCard(column, index) {
     currentEditingCard = index;
     const card = kanbanState[column][index];
     
-    document.getElementById('modal-title').textContent = 'Editar Tarjeta';
+    document.getElementById('modal-title').innerHTML = `
+        <div class="modal-title-container">
+            <span>Editar Tarjeta</span>
+            <button type="button" class="delete-card-btn" onclick="confirmDeleteCard('${column}', ${index})">
+                Eliminar
+            </button>
+        </div>
+    `;
+    
     document.getElementById('card-title').value = card.title;
     document.getElementById('card-desc').value = card.description || '';
     updateCharCounters();
