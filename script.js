@@ -135,6 +135,15 @@ function deleteCard(column, index) {
     }
 }
 
+function confirmDeleteCard(column, index) {
+    const card = kanbanState[column][index];
+    
+    if (confirm(`¿Estás seguro de que quieres eliminar la tarjeta "${card.title}"?\n\nEsta acción no se puede deshacer.`)) {
+        deleteCard(column, index);
+        closeCardModal();
+    }
+}
+
 // ===== EVENT LISTENERS =====
 function setupEventListeners() {
     // Formulario de tarjeta
