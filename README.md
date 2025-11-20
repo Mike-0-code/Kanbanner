@@ -1,6 +1,6 @@
 # Kanbanner - Tablero Kanban Simple
 
-Organiza tus tareas con un tablero Kanban elegante y fácil de usar directamente desde tu navegador.
+Organiza tus tareas con un tablero Kanban simple y fácil de usar directamente desde tu navegador.
 
 ## Características
 
