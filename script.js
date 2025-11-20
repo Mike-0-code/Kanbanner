@@ -331,12 +331,20 @@ function escapeHtml(text) {
 function formatDate(isoString) {
     const date = new Date(isoString);
     const now = new Date();
+    
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const noteDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    const diffTime = today - noteDate;
     const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
     
     if (diffDays === 0) {
         return `Hoy ${date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}`;
     } else if (diffDays === 1) {
         return `Ayer ${date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}`;
+    } else if (diffDays < 7) {
+        const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+        return `${days[date.getDay()]} ${date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}`;
     } else {
         return date.toLocaleDateString('es-ES', { 
             day: 'numeric', 
