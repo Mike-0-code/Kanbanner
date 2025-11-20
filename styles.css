@@ -50,6 +50,73 @@ body {
     z-index: 100;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+/* Botón de información */
+.info-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: help;
+    font-size: 1.1rem;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-btn:hover {
+    color: var(--accent-primary);
+    background-color: var(--bg-tertiary);
+}
+
+/* Tooltip personalizado */
+.info-tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    width: 280px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.info-tooltip.show {
+    display: block;
+}
+
+.tooltip-title {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary);
+}
+
+.tooltip-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.tooltip-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: var(--spacing-xs);
+}
+
 .app-name {
     font-size: 1.5rem;
     font-weight: 700;
