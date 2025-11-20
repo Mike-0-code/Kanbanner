@@ -12,13 +12,6 @@ let pendingDelete = null;
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', () => {
     loadFromStorage();
-    
-    if (!localStorage.getItem('kanbanner_fechas_actualizadas')) {
-        console.log('🔄 Actualizando fechas automáticamente...');
-        updateExistingDates();
-        localStorage.setItem('kanbanner_fechas_actualizadas', 'true');
-    }
-
     renderAllColumns();
     setupEventListeners();
     setupDragAndDrop();
@@ -360,35 +353,4 @@ function formatDate(isoString) {
             minute: '2-digit'
         });
     }
-// === FUNCIÓN TEMPORAL - EJECUTAR UNA VEZ Y LUEGO ELIMINAR ===
-function updateExistingDates() {
-    console.log('🔄 Actualizando fechas existentes...');
-    
-    const columns = ['todo', 'progress', 'done'];
-    let updated = false;
-    
-    columns.forEach(column => {
-        kanbanState[column].forEach(task => {
-            // Si la fecha existe pero no está en formato ISO correcto
-            if (task.createdAt) {
-                try {
-                    // Forzar recreación de la fecha para asegurar formato correcto
-                    const newDate = new Date(task.createdAt).toISOString();
-                    task.createdAt = newDate;
-                    updated = true;
-                } catch (e) {
-                    console.log('Error actualizando fecha:', e);
-                }
-            }
-        });
-    });
-    
-    if (updated) {
-        saveToStorage();
-        renderAllColumns();
-        console.log('✅ Fechas actualizadas correctamente');
-    } else {
-        console.log('ℹ️ No se necesitaron actualizaciones');
-    }
-}
 }
