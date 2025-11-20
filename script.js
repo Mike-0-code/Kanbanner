@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     setupDragAndDrop();
     setupConfirmModal();
+    setupInfoTooltip(); 
 });
 
 // ===== GESTIÓN DE DATOS =====
@@ -26,6 +27,45 @@ function saveToStorage() {
 function loadFromStorage() {
     const saved = localStorage.getItem('kanbaner-data');
     if (saved) kanbanState = JSON.parse(saved);
+}
+
+// ===== INFORMACIÓN DE ALMACENAMIENTO =====
+function setupInfoTooltip() {
+    const infoBtn = document.querySelector('.info-btn');
+    const tooltip = document.createElement('div');
+    
+    tooltip.className = 'info-tooltip';
+    tooltip.innerHTML = `
+        <div class="tooltip-title">💾 Almacenamiento Local</div>
+        <div class="tooltip-text">
+            Tus tareas se guardan automáticamente en este navegador. 
+            Si limpias el historial o cambias de navegador, se reiniciará el tablero.
+        </div>
+        <div class="tooltip-note">
+            Solo visible para ti en este dispositivo
+        </div>
+    `;
+    
+    document.querySelector('.header-actions').appendChild(tooltip);
+    
+    let hideTimeout;
+    
+    infoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        tooltip.classList.toggle('show');
+    });
+    
+    // Cerrar al hacer click fuera
+    document.addEventListener('click', () => {
+        tooltip.classList.remove('show');
+    });
+    
+    // Cerrar con ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            tooltip.classList.remove('show');
+        }
+    });
 }
 
 // ===== RENDERIZADO =====
