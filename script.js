@@ -9,44 +9,9 @@ let currentEditingCard = null;
 let currentColumn = null;
 let pendingDelete = null;
 
-// ===== FUNCIÓN DE ACTUALIZACIÓN (DEBE IR PRIMERO) =====
-function updateExistingDates() {
-    console.log('🔄 Actualizando fechas existentes...');
-    
-    const columns = ['todo', 'progress', 'done'];
-    let updated = false;
-    
-    columns.forEach(column => {
-        if (kanbanState[column]) {
-            kanbanState[column].forEach(task => {
-                if (task.createdAt) {
-                    try {
-                        const newDate = new Date(task.createdAt).toISOString();
-                        task.createdAt = newDate;
-                        updated = true;
-                    } catch (e) {
-                        console.log('Error actualizando fecha:', e);
-                    }
-                }
-            });
-        }
-    });
-    
-    if (updated) {
-        saveToStorage();
-        console.log('✅ Fechas actualizadas correctamente');
-    }
-}
-
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', () => {
     loadFromStorage();
-    
-    if (!localStorage.getItem('kanbanner_fechas_actualizadas')) {
-        updateExistingDates();
-        localStorage.setItem('kanbanner_fechas_actualizadas', Date.now().toString());
-    }
-    
     renderAllColumns();
     setupEventListeners();
     setupDragAndDrop();
